@@ -1,0 +1,86 @@
+@import url("https://evix.org/undo-redo.css");
+@import url("https://code.cdn.mozilla.net/fonts/fira.css");
+@import url("https://cdn.jsdelivr.net/gh/tonsky/FiraCode@5.2/distr/fira_code.css");
+
+* {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font);
+  text-decoration: inherit;
+}
+:root {
+  --dark: #1e1e1e;
+  --mid: #2e2e2e;
+  --blue-one: #2ac9b6;
+  --blue-two: #756ce7;
+  --gradient: linear-gradient(90deg, var(--blue-one), var(--blue-two));
+
+  --font: "Fira Sans", sans-serif;
+  --mono-font: "Fira Code", monospace;
+
+  --bg: var(--dark);
+  --fg: white;
+  --accent: var(--blue-two)
+}
+@supports (font-variation-settings: normal) {
+  :root {
+    --mono-font: "Fira Code VF", monospace;
+  }
+}
+html, body {
+  width: 100%;
+  height: 100%;
+  font-size: min(1rem, 3vw);
+}
+body {
+  display: flex;
+  flex-direction: column;
+  font-size: 2rem;
+}
+
+.page-card {
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5em;
+  gap: 1.5em;
+
+  > a {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    position: relative;
+    width: min(90%, 25ch);
+    --bar-height: 0.2em;
+    margin-top: var(--bar-height);
+    max-height: 5em;
+    text-align: center;
+    padding: 0.5em;
+
+    --adjust-radius: 0.1em;
+    border: var(--adjust-radius) solid var(--mid);
+
+    &::before {
+      content: '';
+      position: absolute;
+      background: var(--gradient);
+      width: calc(100% + var(--adjust-radius, 0) * 2);
+      height: var(--bar-height);
+      left: calc(-1 * var(--adjust-radius, 0));
+      top: 0;
+
+      transform: translateY(-100%);
+    }
+  }
+
+  .title {
+    > div:first-of-type {
+      font-size: 3rem;
+      --fg: var(--blue-one);
+    }
+    > div:last-of-type {
+      font-size: 1.3rem;
+    }
+  }
+}
