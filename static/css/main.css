@@ -2,7 +2,6 @@
 @import url("https://code.cdn.mozilla.net/fonts/fira.css");
 @import url("https://cdn.jsdelivr.net/gh/tonsky/FiraCode@5.2/distr/fira_code.css");
 * {
-  background: var(--bg);
   color: var(--fg);
   font-family: var(--font);
   text-decoration: inherit;
@@ -27,15 +26,15 @@
   }
 }
 html, body {
+  background: var(--bg);
   width: 100%;
   height: 100%;
-  font-size: min(1rem, 3vw);
 }
 
 body {
   display: flex;
   flex-direction: column;
-  font-size: 2rem;
+  font-size: min(1rem, 3vw);
 }
 
 .page-card {
@@ -76,6 +75,108 @@ body {
 }
 .page-card .title > div:last-of-type {
   font-size: 1.3rem;
+}
+
+@media print {
+  .page-resume {
+    display: block !important;
+    background: white !important;
+  }
+  .page-resume > div {
+    width: 100% !important;
+    height: 100% !important;
+  }
+}
+.page-resume {
+  display: grid;
+  place-items: center;
+  background: var(--dark);
+  font-size: 1rem;
+}
+.page-resume > div {
+  width: 8.5in;
+  height: 11in;
+  padding: 1em calc(1in / 3);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  --bg: white;
+  background: var(--bg);
+  --fg: var(--dark);
+  font-size: 0.84rem;
+  font-weight: 300;
+}
+.page-resume > div h1, .page-resume > div h2 {
+  text-align: center;
+}
+.page-resume > div h1 {
+  font-size: 1.6em;
+  font-weight: 300;
+  --fg: var(--blue-two);
+  text-transform: uppercase;
+  line-height: 1.1;
+  margin: 0 0 -0.1em;
+  letter-spacing: 0.1em;
+}
+.page-resume > div .small-line, .page-resume > div .large-line {
+  width: 100%;
+  height: 0.1em;
+  background: var(--gradient);
+  border-radius: 100vmax;
+}
+.page-resume > div .large-line {
+  height: 0.2em;
+}
+.page-resume > div .contact-items {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  justify-items: right;
+  text-align: right;
+  column-gap: 0.5em;
+  margin: 0.5em 0 0;
+  --img-margin: 0.1em;
+}
+.page-resume > div .contact-items div:nth-of-type(even) {
+  justify-self: left;
+  text-align: left;
+}
+.page-resume > div .contact-items div:nth-of-type(even) img {
+  margin: 0 var(--img-margin) 0 0;
+}
+.page-resume > div .contact-items img {
+  height: 1em;
+  width: 1em;
+  vertical-align: baseline;
+  transform: translateY(0.14em);
+  margin: 0 0 0 var(--img-margin);
+}
+.page-resume > div h2 {
+  font-size: 1em;
+  font-weight: 600;
+  margin: 0.5em 0 0;
+  line-height: 1;
+  text-transform: uppercase;
+  --fg: var(--blue-two);
+  letter-spacing: 0.1em;
+}
+.page-resume > div p {
+  margin: 0;
+}
+.page-resume > div span, .page-resume > div .split {
+  font-weight: 400;
+  --fg: var(--blue-two);
+  margin: 0.4em 0 0.1em;
+  line-height: 1;
+}
+.page-resume > div .education {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.page-resume > div .split {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 /*# sourceMappingURL=main.css.map */
