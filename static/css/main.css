@@ -34,7 +34,7 @@ html, body {
 body {
   display: flex;
   flex-direction: column;
-  font-size: min(1rem, 3vw);
+  font-size: min(var(--font-adjust, 1rem), var(--font-percent-adjust, 3vw));
 }
 
 .page-card {
@@ -42,6 +42,8 @@ body {
   align-items: center;
   padding: 0.5em;
   gap: 1.5em;
+  --font-adjust: 2rem;
+  --font-percent-adjust: 7vw;
 }
 .page-card > a {
   display: flex;
@@ -70,11 +72,11 @@ body {
   transform: translateY(-100%);
 }
 .page-card .title > div:first-of-type {
-  font-size: 3rem;
+  font-size: 1.5em;
   --fg: var(--blue-one);
 }
 .page-card .title > div:last-of-type {
-  font-size: 1.3rem;
+  font-size: 0.65em;
 }
 
 @media print {
@@ -129,7 +131,9 @@ body {
 }
 .page-resume > div .contact-items {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, auto);
+  grid-auto-flow: column;
   align-items: center;
   justify-items: right;
   text-align: right;
@@ -137,11 +141,11 @@ body {
   margin: 0.5em 0 0;
   --img-margin: 0.1em;
 }
-.page-resume > div .contact-items div:nth-of-type(even) {
+.page-resume > div .contact-items .right {
   justify-self: left;
   text-align: left;
 }
-.page-resume > div .contact-items div:nth-of-type(even) img {
+.page-resume > div .contact-items .right img {
   margin: 0 var(--img-margin) 0 0;
 }
 .page-resume > div .contact-items img {
@@ -162,8 +166,10 @@ body {
 }
 .page-resume > div p {
   margin: 0;
+  text-align: justify;
 }
 .page-resume > div span, .page-resume > div .split {
+  font-size: 1em;
   font-weight: 400;
   --fg: var(--blue-two);
   margin: 0.4em 0 0.1em;
@@ -177,6 +183,18 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.page-resume > div ul {
+  list-style: none;
+  margin: 0.4em 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+.page-resume > div ul li:not(:last-of-type)::after {
+  content: "<~>";
+  font-family: var(--mono-font);
+  color: var(--blue-one);
 }
 
 /*# sourceMappingURL=main.css.map */
