@@ -13,8 +13,10 @@
   --blue-one: #2ac9b6;
   --blue-two: #756ce7;
   --gradient: linear-gradient(90deg, var(--blue-one), var(--blue-two));
+  --gradient-v: linear-gradient(180deg, var(--blue-one), var(--blue-two));
   --font: "Fira Sans", sans-serif;
   --mono-font: "Fira Code", monospace;
+  --sqrt2: 1.41421356237309504880168872420969807856967187537694807317667973799;
   --bg: var(--dark);
   --fg: white;
   --accent: var(--blue-two) ;
@@ -29,6 +31,7 @@ html, body {
   background: var(--bg);
   width: 100%;
   height: 100%;
+  scroll-snap-type: y mandatory;
 }
 
 body {
@@ -195,6 +198,141 @@ body {
   content: "<~>";
   font-family: var(--mono-font);
   color: var(--blue-one);
+}
+
+.page-index > div {
+  display: flex;
+  flex-direction: row;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  overflow-x: scroll;
+}
+.page-index > div > div {
+  min-height: 100vh;
+  min-width: 100vw;
+  scroll-snap-align: center;
+  overflow-y: scroll;
+  position: relative;
+}
+.page-index > div > div > .arrow {
+  display: block;
+  width: 0;
+  height: 0;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  --size: 2em;
+}
+.page-index > div > div > .arrow:first-of-type {
+  left: 0.5em;
+  border-top: calc(var(--size) / 2) solid transparent;
+  border-bottom: calc(var(--size) / 2) solid transparent;
+  border-right: calc(var(--size) / var(--sqrt2)) solid red;
+}
+.page-index > div > div > .arrow:last-of-type {
+  right: 0.5em;
+  border-top: calc(var(--size) / 2) solid transparent;
+  border-bottom: calc(var(--size) / 2) solid transparent;
+  border-left: calc(var(--size) / var(--sqrt2)) solid red;
+}
+.page-index > div > div > .arrow:not([href]) {
+  display: none;
+}
+.page-index > div > .title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.page-index > div > .title > h1 {
+  font-size: 5rem;
+  margin: 0;
+}
+.page-index > div > .title > p {
+  margin: 0;
+}
+.page-index > div > .projects {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+.page-index > div > .projects > div {
+  border: 0.1em solid var(--mid);
+  height: max-content;
+}
+.page-index > div > .projects > div > img {
+  width: 100%;
+  border-top-right-radius: 0.5em;
+  border-top-left-radius: 0.5em;
+}
+.page-index > div > .languages, .page-index > div > .other {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+.page-index > div > .languages > div, .page-index > div > .other > div {
+  height: max-content;
+}
+.page-index > div > .languages > div > h2, .page-index > div > .other > div > h2 {
+  text-align: center;
+}
+.page-index > div > .languages > div > img, .page-index > div > .other > div > img {
+  border-radius: 100vmax;
+}
+.page-index > div > .experience {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.page-index > div > .experience > div {
+  --width: 100ch;
+  width: min(var(--width), 100%);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.page-index > div > .experience > div > div {
+  flex-grow: 1;
+}
+.page-index > div > .experience > div > img {
+  width: 25%;
+  height: auto;
+  border-radius: 1em;
+}
+.page-index > div > .experience > .separator {
+  width: min(calc(var(--width) + 2em), 100%);
+  min-height: 0.4em;
+  background: var(--gradient);
+}
+.page-index > div > .awards {
+  display: grid;
+  place-items: center;
+}
+.page-index > div > .awards > div {
+  display: grid;
+  grid-template-columns: auto 0.2em auto;
+  grid-template-rows: repeat(var(--rows, 1), auto) [row-end];
+  column-gap: 1em;
+}
+.page-index > div > .awards > div > div {
+  grid-column: 2/3;
+  grid-row: 1/row-end;
+  height: auto;
+  width: 100%;
+  background: var(--gradient-v);
+  border-radius: 100vmax;
+}
+.page-index > div > .awards > div > p:nth-of-type(odd) {
+  text-align: right;
+}
+.page-index > div > .media {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
 }
 
 /*# sourceMappingURL=main.css.map */
