@@ -262,10 +262,16 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fit, 40ch);
   justify-content: space-around;
-  align-content: center;
+  align-content: stretch;
   gap: 2em;
 }
 .page-index > div > .projects > div > div {
+  grid-row: span 3;
+  display: grid;
+  grid-template-rows: subgrid;
+  align-content: center;
+}
+.page-index > div > .projects > div > div > div {
   grid-row: span 3;
   display: grid;
   grid-template-rows: subgrid;
@@ -274,20 +280,20 @@ body {
   border: var(--border) solid var(--mid);
   height: max-content;
 }
-.page-index > div > .projects > div > div > h1 {
+.page-index > div > .projects > div > div > div > h1 {
   margin: 0.5em 0.5em 0;
 }
-.page-index > div > .projects > div > div > ul {
+.page-index > div > .projects > div > div > div > ul {
   margin: 0 1em 0.5em;
   padding: 0;
   list-style: none;
 }
-.page-index > div > .projects > div > div > img {
+.page-index > div > .projects > div > div > div > img {
   width: 100%;
   border-top-right-radius: 0.5em;
   border-top-left-radius: 0.5em;
 }
-.page-index > div > .projects > div > div::before {
+.page-index > div > .projects > div > div > div::before {
   content: "";
   position: absolute;
   width: calc(100% + var(--border) * 2);
