@@ -344,14 +344,32 @@ body {
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
+    column-gap: 1em;
 
     > div {
+      position: relative;
+      --border: 0.1em;
+      border: var(--border) solid var(--mid);
       height: max-content;
+
       > h2 {
         text-align: center;
       }
+
       > img {
-        border-radius: 100vmax;
+        width: 100%;
+        border-top-right-radius: 0.5em;
+        border-top-left-radius: 0.5em;
+      }
+
+      &::before {
+        content: '';
+        position: absolute;
+        width: calc(100% + var(--border) * 2);
+        height: 0.4em;
+        background: var(--gradient);
+        top: calc(-1 * var(--border));
+        left: calc(-1 * var(--border));
       }
     }
   }
