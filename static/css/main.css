@@ -211,8 +211,13 @@ body {
   min-height: 100vh;
   min-width: 100vw;
   scroll-snap-align: center;
-  overflow-y: scroll;
   position: relative;
+  padding: 0 3em;
+}
+.page-index > div > div > div {
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
 }
 .page-index > div > div > .arrow {
   display: block;
@@ -238,86 +243,110 @@ body {
 .page-index > div > div > .arrow:not([href]) {
   display: none;
 }
-.page-index > div > .title {
+.page-index > div > .title > div {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-.page-index > div > .title > h1 {
+.page-index > div > .title > div > h1 {
   font-size: 5rem;
   margin: 0;
 }
-.page-index > div > .title > p {
+.page-index > div > .title > div > p {
   margin: 0;
-}
-.page-index > div > .projects {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-items: center;
+  text-align: center;
+  max-width: 100ch;
 }
 .page-index > div > .projects > div {
-  border: 0.1em solid var(--mid);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 40ch);
+  justify-content: space-around;
+  align-content: center;
+  gap: 2em;
+}
+.page-index > div > .projects > div > div {
+  grid-row: span 3;
+  display: grid;
+  grid-template-rows: subgrid;
+  position: relative;
+  --border: 0.1em;
+  border: var(--border) solid var(--mid);
   height: max-content;
 }
-.page-index > div > .projects > div > img {
+.page-index > div > .projects > div > div > h1 {
+  margin: 0.5em 0.5em 0;
+}
+.page-index > div > .projects > div > div > ul {
+  margin: 0 1em 0.5em;
+  padding: 0;
+  list-style: none;
+}
+.page-index > div > .projects > div > div > img {
   width: 100%;
   border-top-right-radius: 0.5em;
   border-top-left-radius: 0.5em;
 }
-.page-index > div > .languages, .page-index > div > .other {
+.page-index > div > .projects > div > div::before {
+  content: "";
+  position: absolute;
+  width: calc(100% + var(--border) * 2);
+  height: 0.4em;
+  background: var(--gradient);
+  top: calc(-1 * var(--border));
+  left: calc(-1 * var(--border));
+}
+.page-index > div > .languages > div, .page-index > div > .other > div {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
 }
-.page-index > div > .languages > div, .page-index > div > .other > div {
+.page-index > div > .languages > div > div, .page-index > div > .other > div > div {
   height: max-content;
 }
-.page-index > div > .languages > div > h2, .page-index > div > .other > div > h2 {
+.page-index > div > .languages > div > div > h2, .page-index > div > .other > div > div > h2 {
   text-align: center;
 }
-.page-index > div > .languages > div > img, .page-index > div > .other > div > img {
+.page-index > div > .languages > div > div > img, .page-index > div > .other > div > div > img {
   border-radius: 100vmax;
 }
-.page-index > div > .experience {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-}
 .page-index > div > .experience > div {
-  --width: 100ch;
-  width: min(var(--width), 100%);
-  display: flex;
-  justify-content: flex-start;
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-auto-rows: 1fr;
+  gap: 1em;
   align-items: center;
-}
-.page-index > div > .experience > div > div {
-  flex-grow: 1;
+  justify-content: center;
+  padding: 3em;
 }
 .page-index > div > .experience > div > img {
-  width: 25%;
+  justify-self: right;
   height: auto;
   border-radius: 1em;
 }
-.page-index > div > .experience > .separator {
-  width: min(calc(var(--width) + 2em), 100%);
+.page-index > div > .experience > div > div {
+  justify-self: left;
+  width: 100%;
+  max-width: 100ch;
+}
+.page-index > div > .experience > div > .separator {
+  max-width: none;
+  grid-column: span 2;
   min-height: 0.4em;
   background: var(--gradient);
 }
-.page-index > div > .awards {
+.page-index > div > .awards > div {
   display: grid;
   place-items: center;
 }
-.page-index > div > .awards > div {
+.page-index > div > .awards > div > div {
   display: grid;
   grid-template-columns: auto 0.2em auto;
   grid-template-rows: repeat(var(--rows, 1), auto) [row-end];
   column-gap: 1em;
 }
-.page-index > div > .awards > div > div {
+.page-index > div > .awards > div > div > div {
   grid-column: 2/3;
   grid-row: 1/row-end;
   height: auto;
@@ -325,10 +354,10 @@ body {
   background: var(--gradient-v);
   border-radius: 100vmax;
 }
-.page-index > div > .awards > div > p:nth-of-type(odd) {
+.page-index > div > .awards > div > div > p:nth-of-type(odd) {
   text-align: right;
 }
-.page-index > div > .media {
+.page-index > div > .media > div {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
