@@ -212,7 +212,7 @@ body {
   min-width: 100vw;
   scroll-snap-align: center;
   position: relative;
-  padding: 0 3em;
+  padding: 1em 3em;
 }
 .page-index > div > div > div {
   width: 100%;
@@ -307,13 +307,14 @@ body {
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
-  column-gap: 1em;
+  gap: 0.5em 1em;
 }
 .page-index > div > .languages > div > div, .page-index > div > .other > div > div {
   position: relative;
+  flex: 0 1;
+  min-width: 35ch;
   --border: 0.1em;
   border: var(--border) solid var(--mid);
-  height: max-content;
 }
 .page-index > div > .languages > div > div > h2, .page-index > div > .other > div > div > h2 {
   text-align: center;

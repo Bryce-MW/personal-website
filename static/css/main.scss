@@ -237,7 +237,7 @@ body {
     min-width: 100vw;
     scroll-snap-align: center;
     position: relative;
-    padding: 0 3em;
+    padding: 1em 3em;
 
     > div {
       width: 100%;
@@ -344,13 +344,14 @@ body {
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
-    column-gap: 1em;
+    gap: 0.5em 1em;
 
     > div {
       position: relative;
+      flex: 0 1;
+      min-width: 35ch;
       --border: 0.1em;
       border: var(--border) solid var(--mid);
-      height: max-content;
 
       > h2 {
         text-align: center;
