@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gradients test</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+        div {
+            margin-bottom: 0.5em;
+        }
+        .q {
+            width: 100%;
+            height: 30%;
+            background: linear-gradient(to right, black, 33%, white, black);
+        }
+        .a {
+            width: 100%;
+            height: 30%;
+            background: linear-gradient(to right, black, rgb(50%, 50%, 50%), white, black);
+        }
+        .w {
+            width: 100%;
+            height: 30%;
+            background: linear-gradient(to right, black, white, black);
+        }
+        .e {
+            width: 100%;
+            height: 30%;
+            background: linear-gradient(to right, black, ease-in-out, white, black);
+        }
+        .r {
+            width: 100%;
+            height: 30%;
+            background: linear-gradient(to right, black, 50%, white, black);
+        }
+    </style>
+</head>
+<body>
+<div class="q"></div>
+<div class="a"></div>
+<div class="w"></div>
+<div class="e"></div>
+<div class="r"></div>
+</body>
+</html>
