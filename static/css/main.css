@@ -187,6 +187,9 @@ body {
   justify-content: space-between;
   align-items: center;
 }
+.page-resume > div .split a {
+  font-style: italic;
+}
 .page-resume > div ul {
   list-style: none;
   margin: 0.4em 0;
