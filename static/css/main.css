@@ -46,7 +46,7 @@ body {
   --font: var(--mono-font);
   display: grid;
   place-items: center;
-  font-size: clamp(1em, min(5vw, 5vh), 10em);
+  font-size: clamp(1em, min(5vw, 7vh), 3.5em);
   line-height: 1;
 }
 .ascii > div {
