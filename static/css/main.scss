@@ -1,11 +1,11 @@
-@import url("https://evix.org/undo-redo.css");
+@import "undo-redo.css";
 @import url("https://code.cdn.mozilla.net/fonts/fira.css");
 @import url("https://cdn.jsdelivr.net/gh/tonsky/FiraCode@5.2/distr/fira_code.css");
 
-* {
+*, ::before, ::after {
+  color: var(--fgc);
   color: var(--fg);
   font-family: var(--font);
-  text-decoration: inherit;
 }
 :root {
   --dark: #1e1e1e;
@@ -17,8 +17,6 @@
 
   --font: "Fira Sans", sans-serif;
   --mono-font: "Fira Code", monospace;
-
-  --sqrt2: 1.41421356237309504880168872420969807856967187537694807317667973799;
 
   --bg: var(--dark);
   --fg: white;
@@ -41,6 +39,227 @@ body {
   font-size: min(var(--font-adjust, 1rem), var(--font-percent-adjust, 3vw));
 }
 
+@keyframes typing {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.page-index {
+  display: grid;
+  place-items: center;
+
+  --font-adjust: 2rem;
+  --font: var(--mono-font);
+  --fg: --text;
+  --bg: #1E1D27;
+
+  --text: #C9C9D2;
+  --d: #000000;
+  --dl: #2C2C3C;
+  --rc: color(display-p3 calc(193/255) calc(0/255) calc(68/255));
+  --r: #D30041;
+  --rlc: color(display-p3 calc(243/255) calc(63/255) calc(108/255));
+  --rl: #FF206A;
+  --g: #4AA45A;
+  --glc: color(display-p3 calc(71/255) calc(178/255) calc(71/255));
+  --gl: #00B533;
+  --y: #A6A651;
+  --ylc: color(display-p3 calc(229/255) calc(229/255) calc(75/255));
+  --yl: #E5E501;
+  --b: #2F3869;
+  --blc: color(display-p3 calc(112/255) calc(148/255) calc(255/255));
+  --bl: #6695FF;
+  --m: #6E2F9F;
+  --mlc: color(display-p3 calc(159/255) calc(90/255) calc(246/255));
+  --ml: #AA56FF;
+  --c: #90A7FB;
+  --clc: color(display-p3 calc(104/255) calc(226/255) calc(227/255));
+  --cl: #00E5E5;
+  --w: #BFBFBF;
+  --wlc: color(display-p3 calc(209/255) calc(208/255) calc(216/255));
+  --wl: #D1D0D9;
+
+  section {
+    width: max-content;
+    --startup: 0.3s;
+    --time: 0.15s;
+
+    &::before {
+      animation: typing var(--time) ease-in-out var(--startup) both;
+      content: '[' var(--dir) ']';
+      --fgc: var(--blc);
+      --fg: var(--bl);
+    }
+
+    h1 {
+      display: inline;
+      font-size: 1em;
+      font-weight: normal;
+      margin: 0;
+    }
+
+    > h1 {
+      &::before {
+        animation: typing var(--time) ease-in-out var(--startup) both;
+        content: '$ ';
+        font-weight: bold;
+        --fg: var(--g);
+      }
+      > i {
+        animation: typing var(--time) ease-in-out calc(var(--startup) + var(--time) + var(--t) * var(--time)) both;
+      }
+    }
+
+    main {
+      user-select: none;
+      --m-startup: calc(var(--startup) + var(--time) + var(--chars) * var(--time));
+
+      > h1 {
+        animation: typing var(--time) ease-in-out var(--m-startup) both;
+        u:nth-child(3) {
+          margin-right: 1ch;
+        }
+      }
+
+      p {
+        animation: typing var(--time) ease-in-out calc(var(--m-startup) + var(--time) + var(--time) * var(--l)) both;
+        &.d::before {
+          font-weight: bold;
+          content: 'd';
+          --fg: var(--b);
+        }
+
+        &::before {
+          content: '.';
+          --fg: var(--w);
+        }
+
+        &.r :is(:nth-child(1),:nth-child(2),:nth-child(3))::before {
+          content: 'r';
+          --fg: var(--y);
+        }
+
+        b:is(:nth-child(1),:nth-child(2),:nth-child(3)) {
+          --fg: var(--rl);
+          --fgc: var(--rlc);
+        }
+
+        &:is(.x, .ux) :is(:nth-child(1),:nth-child(2),:nth-child(3))::after {
+          content: 'x';
+          --fg: var(--g);
+        }
+        &.ux :nth-child(1)::after {
+          text-decoration: underline;
+        }
+
+        :is(:nth-child(1),:nth-child(2),:nth-child(3)) {
+          --fg: var(--w);
+
+          &::before {
+            font-weight: normal;
+            content: '-';
+            --fg: var(--w);
+          }
+
+          font-weight: normal;
+          content: '-';
+
+          &::after {
+            font-weight: normal;
+            content: '-';
+            --fg: var(--w);
+          }
+        }
+
+        &.r :nth-child(1)::before {
+          font-weight: bold;
+        }
+
+        b:nth-child(1) {
+          font-weight: bold;
+        }
+
+        &:is(.x, .ux) :nth-child(1)::after {
+          font-weight: bold;
+        }
+
+        :nth-child(3)::after {
+          margin-right: 2ch;
+        }
+
+        :nth-child(4) {
+          display: inline-block;
+          text-decoration: none;
+          width: 4ch;
+          text-align: right;
+          margin-right: 1ch;
+          --fg: var(--w);
+        }
+        :is(b, u):nth-child(4) {
+          font-weight: bold;
+          --fg: var(--g);
+        }
+        u:nth-child(4)::after {
+          font-weight: normal;
+          content: 'k';
+        }
+
+        :nth-child(5) {
+          --fg: var(--b);
+          --fgc: var(--blc);
+          &::before {
+            content: 'bryce';
+            margin-right: 1ch;
+            font-weight: bold;
+            --fg: var(--y);
+          }
+          &::after {
+            content: '--';
+            margin-left: 3ch;
+            margin-right: 1ch;
+            --fg: var(--w);
+          }
+          &.i::after {
+            content: '-I';
+          }
+        }
+
+        :nth-child(6) {
+          user-select: text;
+          &.g {
+            --fg: var(--g);
+            --fgc: var(--glc);
+          }
+          &.y {
+            --fg: var(--y);
+            --fgc: var(--ylc);
+          }
+          &.b {
+            --fg: var(--b);
+            --fgc: var(--blc);
+          }
+        }
+        u:nth-child(6) {
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
+  p {
+    margin: 0;
+  }
+  i {
+    font-style: normal;
+  }
+  ::selection {
+    background: #501575;
+  }
+}
 
 .ascii {
   --bg: white;
@@ -276,7 +495,7 @@ body {
   }
 }
 
-.page-index > div {
+.page-portfolio > div {
   display: flex;
   flex-direction: row;
   scroll-snap-type: x mandatory;
