@@ -48,6 +48,99 @@ body {
   }
 }
 
+.recipe {
+  display: flex;
+  align-items: center;
+  height: max-content;
+
+  > * {
+    width: min(70%, calc(100% - 2em));
+    margin: 1em;
+
+    border: 0.2em solid var(--accent);
+    border-radius: 0.5em;
+  }
+  > article {
+    background: var(--mid);
+    > header {
+      border-radius: 0.5em 0.5em 0 0;
+      background: var(--dark);
+      padding: 1em;
+      > span {
+        font-size: 1.3rem;
+        color: var(--light);
+      }
+    }
+    > div {
+      padding: 1em;
+      > p {
+        margin: 0;
+        color: var(--dark);
+      }
+      > a {
+        display: block;
+        width: max-content;
+        cursor: pointer;
+        padding: 0.2em 0.5em;
+        text-decoration: none;
+        font-weight: bold;
+
+        border: 0.15em solid var(--dark);
+        border-radius: 0.5em;
+
+        color: var(--dacc);
+        background: var(--light);
+
+        &:hover {
+          border: 0.15em solid var(--accent);
+          color: var(--accent);
+          background: var(--dark);
+        }
+
+        transition-duration: 250ms;
+        transition-timing-function: ease-in-out;
+        transition-property: background-color, color, border;
+      }
+    }
+  }
+  > header {
+    > span {
+      font-size: 1.5rem;
+      color: var(--accent);
+    }
+
+    padding: 1em;
+    background: var(--dark);
+
+    --light:  rgb(83.15% 63.68% 99.68%);
+    --mid:    rgb(55.94% 38.18% 71.85%);
+    --dark:   rgb(30.38% 14.69% 45.78%);
+    --accent: rgb(54.7% 77.26% 41.86%);
+    --dacc:   rgb(11.03% 31.97% 0%);
+  }
+  > .one {
+    --light:  rgb(73.73% 77.23% 95.8%);
+    --mid:    rgb(47.45% 51.12% 68.35%);
+    --dark:   rgb(23.06% 27.3% 42.76%);
+    --accent: rgb(79.86% 78.43% 59.59%);
+    --dacc:   rgb(28.75% 28.27% 12.04%);
+  }
+  > .two {
+    --light:  rgb(60.55% 82.7% 71.1%);
+    --mid:    rgb(34.88% 56.03% 45.41%);
+    --dark:   rgb(10.18% 31.41% 22.1%);
+    --accent: rgb(92.51% 71.73% 84.4%);
+    --dacc:   rgb(39.37% 21.94% 33.2%);
+  }
+  > .three {
+    --light:  rgb(94.36% 72.53% 66.45%);
+    --mid:    rgb(66.49% 46.6% 41.13%);
+    --dark:   rgb(40.28% 22.87% 18.31%);
+    --accent: rgb(55.29% 82.25% 89.23%);
+    --dacc:   rgb(0% 30.89% 36.45%);
+  }
+}
+
 .page-index {
   display: grid;
   place-items: center;
