@@ -1,10 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!--Things that must happen first-->
     <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Bryce Wilson's Resume</title>
     <link href="static/css/main.css" rel="stylesheet">
+    <!--Preloading and other performance stuff-->
+    <link rel="preload" href="static/css/undo-redo.css" as="style" type="text/css">
+    <!--@ToDo Self-host Fira font CSS (And the font itself?)-->
+    <link rel="preload" href="static/css/fira.css" as="style" type="text/css">
+    <!--Add any new fonts here to make sure they load first-->
+    <link rel="preload" href="static/font/FiraGO-Light.woff" as="font" type="font/woff" crossorigin>
+    <link rel="preload" href="static/font/FiraGO-LightItalic.woff" as="font" type="font/woff" crossorigin>
+    <link rel="preload" href="static/font/FiraGO-Regular.woff" as="font" type="font/woff" crossorigin>
+    <link rel="preload" href="static/font/FiraGO-Italic.woff" as="font" type="font/woff" crossorigin>
+    <link rel="preload" href="static/font/FiraGO-SemiBold.woff" as="font" type="font/woff" crossorigin>
+    <!--Normal head elements-->
+    <meta content="width=device--width, initial-scale=1.0" name="viewport">
+    <title>Bryce Wilson's Resume</title>
 </head>
 <body id="B" class="page-resume">
 <div>
@@ -52,22 +64,23 @@
             </a>
         </address>
     </section>
-    <section><h2>Personal Statement</h2>
-        <p>
-            My immediate academic objective is to study Computer Science. My long&hyphen;term goal is to attain a Ph.D.
-            specializing in a gripping aspect of this subject that I expect will emerge as I continue through my
-            education.
-        </p>
-    </section>
+<!--    <section><h2>Personal Statement</h2>-->
+<!--        <p>-->
+<!--            My immediate academic objective is to study Computer Science. My long&hyphen;term goal is to attain a Ph.D.-->
+<!--            specializing in a gripping aspect of this subject that I expect will emerge as I continue through my-->
+<!--            education.-->
+<!--        </p>-->
+<!--    </section>-->
     <section><h2>Skills Summary</h2>
         <p>
-            <span>Skills:</span> LaTeX, 3D Printing, Shell Scripting, Bash, Linux, Unix, System Administration, Internet
-            Exchanges, Autonomous Systems, MySQL, SQL, Relational Databases, Git, GitHub, GitLab, VMs, LXC Containers,
-            Operating Systems, Systems Programming.
+            <span>Skills:</span> Operating Systems, Systems Programming, Compilers, Computer Networking, Autonomous
+            Systems, Internet Exchanges, Relational Databases (SQL, MySQL, PostgreSQL), Unix (Linux, BSD), Shell
+            Scripting (Bash), Git (GitHub, GitLab), System Administration, VMs, LXC Containers, LaTeX, 3D Printing.
         </p>
         <p>
-            <span>Programming Languages:</span> C, C++, Python, Rust, Java, HTML5, CSS3, general experience in many
-            additional languages.
+            <span>Programming Languages:</span> Jai, C, C++, x86_64 Assembly, Python,
+            Rust, Java, HTML5, CSS3, Javascript (and Typescript), Java (first language;
+            &#x2248;12 years), general experience in many additional languages.
         </p>
     </section>
 
@@ -76,10 +89,10 @@
             <span>University of British Columbia</span>
             <span>BSc, Honours Computer Science</span>
             <div>September 2019&ndash;April 2023</div>
-            <div>Overall 86.97%, 3.90/4, 3.85/4.33; Major 93.78%, 4.00/4, 4.28/4.33</div>
+            <div>3.83 GPA</div>
 
             <span>University of California, Berkeley</span> <span>Summer Session, Operating Systems Course</span>
-            <div><time datetime="2021-06">June 2021</time>&ndash;<time datetime="2021-08">August 2021</time></div> <div>A+, 4.0 GPA</div>
+            <div><time datetime="2021-06">June 2021</time>&ndash;<time datetime="2021-08">August 2021</time></div> <div>A, 4.0 GPA</div>
         </div>
     </section>
 
@@ -90,75 +103,93 @@
             <a href="https://evix.org">https://evix.org</a>
         </h3>
         <p>
-            Primary maintainer and team lead for about 3 years. Currently, has approximately 200 members. Learned many
-            technologies including Python, Bash, PHP, JSON, HTML, CSS, JS, Ansible, Linux, and SQL. Self-taught database
-            design and normalization. Used networking concepts such as the OSI model, tunneling protocols (VXLAN,
-            OpenVPN, EoIP), and BGP. My ASN is 202313.
+            Primary maintainer and team lead for about 5 years. Currently, has approximately 200 members.
+            Stepping stone to leaving technologies including Python, Bash, PHP, JSON, HTML, CSS, JS,
+            Ansible, Linux, and SQL as demanded by the project's requirements. Self&hyphen;taught
+            database design and normalization. Used networking concepts such as the OSI model, tunneling
+            protocols (VXLAN, OpenVPN, EoIP), and BGP for practical purposes. My ASN is 202313.
         </p>
         <p>
-            With about 200 members, we needed a ticketing system (OsTicket). Many members ask for configurations not
-            originally imagined. Dealing with unexpected changes to requirements is a valuable skill that is rarely
-            experienced in personal projects.
+            Learned and deployed a ticketing system (OsTicket). Developed soft stills dealing with
+            members who are novices at computer networking and often have a language barrier. Adapted
+            to rapidly changing requirements as members made requests for unanticipated configurations.
         </p>
-        <h3 class="split">
-            <span>WikiData Explorer</span>
-            <a href="https://github.com/Bryce-MW/WikidataExplorer">https://github.com/Bryce-MW/WikidataExplorer</a>
-        </h3>
-        <p>
-            I enjoy programming so a wrote a 4000 line program for this school project, going far beyond the
-            requirements. I had a significant amount of experience though I had never written a project of this size
-            before, so I wanted to challenge myself. This project centred around a visual exploration of structured
-            data. See the project page for a demo video.
-        </p>
+<!--        <h3 class="split">-->
+<!--            <span>WikiData Explorer</span>-->
+<!--            <a href="https://github.com/Bryce-MW/WikidataExplorer">https://github.com/Bryce-MW/WikidataExplorer</a>-->
+<!--        </h3>-->
+<!--        <p>-->
+<!--            I enjoy programming so a wrote a 4000 line program for this school project, going far beyond the-->
+<!--            requirements. I had a significant amount of experience though I had never written a project of this size-->
+<!--            before, so I wanted to challenge myself. This project centred around a visual exploration of structured-->
+<!--            data. See the project page for a demo video.-->
+<!--        </p>-->
     </section>
     <section>
         <h2>
             Work Experience
         </h2>
         <h3 class="split">
-            <span>Teaching Assistant, UBC Computer Science Department</span>
-            <span><time datetime="2021-01">January 2021</time>&ndash;Present</span>
+            <span>Software Development Intern, Thekla Inc.</span>
+            <span><time datetime="2022-05">May 2022</time>&ndash;<time datetime="2022-08">August 2022</time></span>
         </h3>
         <p>
-            TA of two courses, CPSC 203 and 259. Both courses are for non-computer science majors. In 203, I worked
-            directly with Dr. Cinda Heeren and participated in the creation of course materials. In 259, I taught
-            data-structures and algorithms especially usage of pointers and the difference between the stack, heap, and
-            static data.
+            I work closely with my boss and owner Jonathan Blow on the compiler and built&hyphen;in libraries
+            for Thekla's new programming language Jai. I wrote a library for asynchronous file IO and rewrote
+            the Unicode library. I contribute to various other libraries including those for atomics and
+            synchronization. In the compiler, I fix bugs and make general improvements where I find that
+            they can be made. I also work on improvements for C and Objective&hyphen;C interoperability.
+            The company uses Jai for a future video game. I make some improvements to use features of the
+            libraries that I have built or improved. I also play&hyphen;test the game and review the code
+            as a way of finding interesting improvements that can be made to the language and the libraries.
         </p>
         <h3 class="split">
-            <span>Research Assistant, UBC Centre for Heart Lung Innovation, St. Paul’s Hospital</span>
-            <span><time datetime="2020-06">June 2020</time>&ndash;<time datetime="2020-10">Oct 2020</time></span>
+            <span>Teaching Assistant, UBC Computer Science Department</span>
+            <span><time datetime="2021-01">January 2021</time>&ndash;<time datetime="2021-12">December 2021</time></span>
         </h3>
         <p>
-            I worked under the direction of Dr. Denise Daley and her research team. My primary role was to develop data
-            processing systems as needed for ongoing genetic research projects. In my role, I worked on updating a large
-            project in Java to work with new research data and wrote data processing shell scripts to be run on a
-            computing cluster.
+            TA of two courses, CPSC 203 and 259. Both designed for students outside computer science. In 203,
+            I worked directly with Dr. Cinda Heeren and participated in the creation of course materials.
+            We introduced programming in Python and the basics of building data-structures and algorithms to
+            students from all over the university. In 259, I taught electrical engineers data-structures and
+            algorithms focusing on usage of pointers and the difference between the stack, heap, and static data.
         </p>
+<!--        <h3 class="split">-->
+<!--            <span>Research Assistant, UBC Centre for Heart Lung Innovation, St. Paul’s Hospital</span>-->
+<!--            <span><time datetime="2020-06">June 2020</time>&ndash;<time datetime="2020-10">Oct 2020</time></span>-->
+<!--        </h3>-->
+<!--        <p>-->
+<!--            I worked under the direction of Dr. Denise Daley and her research team. My primary role was to develop data-->
+<!--            processing systems as needed for ongoing genetic research projects. In my role, I worked on updating a large-->
+<!--            project in Java to work with new research data and wrote data processing shell scripts to be run on a-->
+<!--            computing cluster.-->
+<!--        </p>-->
         <h3 class="split">
             <span>Head of Facilities and Pool Maintenance, Crescent Beach Swim Club</span>
-            <span><time datetime="2016-06">June 2016</time>&ndash;Present</span>
+            <span>(part-time summer) <time datetime="2016-06">June 2016</time>&ndash;Present</span>
         </h3>
         <p>
             I am a certified pool operator and work with my team to maintain pool chemical balance and cleanliness in
             accordance with Public Health Standards; assist with building, repairing, and maintenance of equipment,
             facilities, and grounds as needed; ensure the entire facility is safe for public use; interact with members
-            to ensure their safety and well&hyphen;being. I train new employees and teach a leadership course for future
-            employees. I am also entrusted with the master keys to the building and staff lockers.
+            to ensure their safety and well&hyphen;being. I train new employees and teach a leadership course for
+            future employees. I am also trusted with the master keys and codes to the building and staff lockers.
         </p>
     </section>
 
     <section><h2>University Awards</h2>
         <p>
-            Science Case Competition, First Place Team, UBC Sci Team; <time datetime="2021">2021</time> Technology
-            Impact Awards Scholarship, $&thinsp;3,500 Recipient, BC Tech Association; Dean’s Honour List (<time
-            datetime="2020">2020</time>, <time datetime="2021">2021</time>), UBC Faculty of Science.
+            Science Case Competition, First Place Team, UBC Sci Team; <time datetime="2021">2021</time>
+            Technology Impact Awards Scholarship, $<span class="thin-space"></span>3,500 Recipient,
+            BC Tech Association; Dean’s Honour List (<time datetime="2020">2020</time>, <time
+            datetime="2021">2021</time>, <time datetime="2021">2022</time>), UBC Faculty of Science.
         </p>
     </section>
     <section><h2>University Clubs & Activities</h2>
         <p>
-            UBC Artistic Swimming, CS Department Student Development Committee, UBC Concert Winds, Dene House Council
-            and Floor Rep, Climate Justice UBC.
+            UBC Artistic Swimming, Computer Science Department Student Development
+            Committee, Computer Science Student Society Internal Officer, Varsity Outdoor
+            Club, UBC Concert Winds, Dene House Council and Floor Rep, Climate Justice UBC.
         </p>
     </section>
 </div>

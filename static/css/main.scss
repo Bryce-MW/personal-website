@@ -1,42 +1,51 @@
-@import "undo-redo.css";
-@import url("https://code.cdn.mozilla.net/fonts/fira.css");
-@import url("https://cdn.jsdelivr.net/gh/tonsky/FiraCode@5.2/distr/fira_code.css");
+@use "undo-redo.css";
+@import url("fira.css");
 
+//noinspection CssOverwrittenProperties
 *, ::before, ::after {
   color: var(--fgc);
   color: var(--fg);
   font-family: var(--font);
 }
 :root {
-  --dark: #1e1e1e;
-  --mid: #2e2e2e;
-  --blue-one: #2ac9b6;
-  --blue-two: #756ce7;
-  --gradient: linear-gradient(90deg, var(--blue-one), var(--blue-two));
-  --gradient-v: linear-gradient(180deg, var(--blue-one), var(--blue-two));
+  --dark: rgb(10.77% 10.77% 10.77%);
+  --mid:  rgb(18.94% 18.94% 18.94%);
+  --blue-one:   rgb(15.36% 86.33% 90.6%);
+  --blue-two:   rgb(52.41% 48.93% 99.87%);
+  --blue-two-d: rgb(0.75% 61.02% 64.26%);
+  --green:      rgb(48.96% 57.89% 24.62%);
+  --green-d:    rgb(27.03% 36.1% 1.03%);
+  --gradient: linear-gradient(90deg, var(--blue-one), var(--blue-two), var(--green-d));
+  --gradient-v: linear-gradient(180deg, var(--blue-one), var(--blue-two), var(--green-d));
 
-  --font: "Fira Sans", sans-serif;
-  --mono-font: "Fira Code", monospace;
+  --font: "FiraGO", sans-serif;
+  --mono-font: "Fira Code VF", monospace;
 
   --bg: var(--dark);
   --fg: white;
   --accent: var(--blue-two)
-}
-@supports (font-variation-settings: normal) {
-  :root {
-    --mono-font: "Fira Code VF", monospace;
-  }
 }
 html, body {
   background: var(--bg);
   width: 100%;
   height: 100%;
   scroll-snap-type: y mandatory;
+
+  font-feature-settings: "abvs", "blws", "case", "calt", "dlig", "jalt", "kern", "lnum", "locl", "pnum", "rlig", "liga";
 }
 body {
   display: flex;
   flex-direction: column;
   font-size: min(var(--font-adjust, 1rem), var(--font-percent-adjust, 3vw));
+}
+a {
+  text-decoration: none;
+}
+.thin-space {
+  // This is a workaround for FiraGO not having a thin space
+  display: inline-block;
+  width: calc(1em/6);
+  margin: 0;
 }
 
 @keyframes typing {
@@ -451,10 +460,10 @@ body {
 }
 
 @media print {
-  .page-resume {
+  html {
     display: block !important;
     background: white !important;
-    > div {
+    > .page-resume > div {
       width: 100% !important;
       height: 100% !important;
     }
@@ -488,6 +497,7 @@ body {
       font-weight: 300;
       --fg: var(--blue-two);
       text-transform: uppercase;
+      font-feature-settings: "abvs", "blws", "case", "calt", "dlig", "jalt", "kern", "lnum", "locl", "pnum", "rlig", "liga", "cpsp";
       line-height: 1.1;
       margin: 0 0 -0.1em;
       letter-spacing: 0.1em;
@@ -540,6 +550,7 @@ body {
       margin: 0.5em 0 0;
       line-height: 1;
       text-transform: uppercase;
+      font-feature-settings: "abvs", "blws", "case", "calt", "dlig", "jalt", "kern", "lnum", "locl", "pnum", "rlig", "liga", "cpsp";
       --fg: var(--blue-two);
       letter-spacing: 0.1em;
     }
@@ -547,19 +558,29 @@ body {
     p {
       margin: 0;
       text-align: justify;
-    }
 
-    span, .split {
-      font-size: 1em;
-      font-weight: 400;
-      --fg: var(--blue-two);
-      margin: 0.4em 0 0.1em;
-      line-height: 1;
+      > span {
+        --fg: var(--green);
+        font-weight: 400;
+      }
     }
 
     .education {
       display: grid;
       grid-template-columns: 1fr 1fr;
+
+      > span:nth-of-type(2n + 1), > div:nth-of-type(2n) {
+        --fg: var(--green);
+        font-weight: 400;
+      }
+    }
+
+    .split, .split > span {
+      font-size: 1em;
+      font-weight: 400;
+      --fg: var(--blue-two-d);
+      margin: 0.4em 0 0.1em;
+      line-height: 1;
     }
 
     .split {

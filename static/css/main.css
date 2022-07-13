@@ -1,6 +1,524 @@
-@import "undo-redo.css";
-@import url("https://code.cdn.mozilla.net/fonts/fira.css");
-@import url("https://cdn.jsdelivr.net/gh/tonsky/FiraCode@5.2/distr/fira_code.css");
+@charset "UTF-8";
+@import url("fira.css");
+:root {
+  --sqrt2: 1.41421356237309504880168872420969807856967187537694807317667973799;
+}
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+::before,
+::after {
+  text-decoration: inherit;
+  vertical-align: inherit;
+}
+
+html {
+  line-height: 1.5;
+  -moz-tab-size: 4;
+  tab-size: 4;
+  -webkit-tap-highlight-color: transparent;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  word-break: break-word;
+}
+
+body {
+  margin: 0;
+}
+
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+dl dl,
+dl ol,
+dl ul,
+ol dl,
+ul dl,
+ol ol,
+ol ul,
+ul ol,
+ul ul {
+  margin: 0;
+}
+
+hr {
+  color: inherit;
+  height: 0;
+  overflow: visible;
+}
+
+main {
+  display: block;
+}
+
+nav ol,
+nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+nav li::before {
+  content: "â€‹";
+}
+
+pre {
+  font-family: monospace, monospace;
+  font-size: 1em;
+  overflow: auto;
+  -ms-overflow-style: scrollbar;
+}
+
+a {
+  background-color: transparent;
+}
+
+abbr[title] {
+  text-decoration: underline;
+  text-decoration: underline dotted;
+}
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+code,
+kbd,
+samp {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+small {
+  font-size: 80%;
+}
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+  vertical-align: middle;
+}
+
+audio,
+video {
+  display: inline-block;
+}
+
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+
+iframe {
+  border-style: none;
+}
+
+img {
+  border-style: none;
+}
+
+svg:not([fill]) {
+  fill: currentColor;
+}
+
+svg:not(:root) {
+  overflow: hidden;
+}
+
+table {
+  border-collapse: collapse;
+  border-color: inherit;
+  text-indent: 0;
+}
+
+button,
+input,
+select {
+  margin: 0;
+}
+
+button {
+  overflow: visible;
+  text-transform: none;
+}
+
+button,
+[type=button],
+[type=reset],
+[type=submit] {
+  -webkit-appearance: button;
+}
+
+fieldset {
+  border: 1px solid #a0a0a0;
+  padding: 0.35em 0.75em 0.625em;
+}
+
+input {
+  overflow: visible;
+}
+
+legend {
+  color: inherit;
+  display: table;
+  max-width: 100%;
+  white-space: normal;
+}
+
+progress {
+  display: inline-block;
+  vertical-align: baseline;
+}
+
+select {
+  text-transform: none;
+}
+
+textarea {
+  margin: 0;
+  overflow: auto;
+  resize: vertical;
+  resize: block;
+}
+
+/**
+ * Remove the padding in IE 10-.
+
+ NOTE(bryce): Needed for proper styling. Agree.
+ */
+[type=checkbox],
+[type=radio] {
+  padding: 0;
+}
+
+/**
+ * 1. Correct the odd appearance in Chrome, Edge, and Safari.
+ * 2. Correct the outline style in Safari.
+
+ NOTE(bryce): Needed for proper styling. Agree.
+ */
+[type=search] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  outline-offset: -2px;
+  /* 2 */
+}
+
+/**
+ * Correct the cursor style of increment and decrement buttons in Safari.
+
+  NOTE(bryce): Needed for proper styling. Agree.
+ */
+::-webkit-inner-spin-button,
+::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/**
+ * Correct the text style of placeholders in Chrome, Edge, and Safari.
+
+  NOTE(bryce): Needed for proper styling. Agree.
+ */
+::-webkit-input-placeholder {
+  color: inherit;
+  opacity: 0.54;
+}
+
+/**
+ * Remove the inner padding in Chrome, Edge, and Safari on macOS.
+
+  NOTE(bryce): Needed for proper styling. Agree.
+ */
+::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/**
+ * 1. Correct the inability to style upload buttons in iOS and Safari.
+ * 2. Change font properties to `inherit` in Safari.
+
+  NOTE(bryce): Needed for proper styling. Agree.
+ */
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  /* 1 */
+  font: inherit;
+  /* 2 */
+}
+
+/**
+ * Remove the inner border and padding of focus outlines in Firefox.
+
+  NOTE(bryce): This s so annoying. Can be useful for something I guess so change if needed. Agree.
+ */
+::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+/**
+ * Restore the focus outline styles unset by the previous rule in Firefox.
+ */
+:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+
+/**
+ * Remove the additional :invalid styles in Firefox.
+
+ NOTE(bryce): This can be useful but probably style locally.
+ */
+:-moz-ui-invalid {
+  box-shadow: none;
+}
+
+/* Interactive
+ * ========================================================================== */
+/*
+ * Add the correct display in Edge 18- and IE.
+ */
+details {
+  display: block;
+}
+
+/*
+ * Add the correct styles in Edge 18-, IE, and Safari.
+ */
+/*noinspection CssInvalidPropertyValue*/
+dialog {
+  background-color: white;
+  border: solid;
+  color: black;
+  display: block;
+  height: -moz-fit-content;
+  height: -webkit-fit-content;
+  height: fit-content;
+  left: 0;
+  margin: auto;
+  padding: 1em;
+  position: absolute;
+  right: 0;
+  width: -moz-fit-content;
+  width: -webkit-fit-content;
+  width: fit-content;
+}
+
+dialog:not([open]) {
+  display: none;
+}
+
+/*
+ * Add the correct display in all browsers.
+ */
+summary {
+  display: list-item;
+}
+
+/* Scripting
+ * ========================================================================== */
+/**
+ * Add the correct display in IE 9-.
+ */
+canvas {
+  display: inline-block;
+}
+
+/**
+ * Add the correct display in IE.
+ */
+template {
+  display: none;
+}
+
+/* User interaction
+ * ========================================================================== */
+/*
+ * Remove the tapping delay in IE 10.
+ */
+a,
+area,
+button,
+input,
+label,
+select,
+summary,
+textarea,
+[tabindex] {
+  -ms-touch-action: manipulation;
+}
+
+/**
+ * Add the correct display in IE 10-.
+
+ NOTE(bryce): This is required. I guess it does not have to be but you'll need some breaking. Agree.
+ */
+[hidden] {
+  display: none;
+}
+
+/* Accessibility
+ * ========================================================================== */
+/**
+ * Change the cursor on busy elements in all browsers (opinionated).
+ */
+[aria-busy=true] {
+  cursor: progress;
+}
+
+/*
+ * Change the cursor on control elements in all browsers (opinionated).
+ */
+[aria-controls] {
+  cursor: pointer;
+}
+
+/*
+ * Change the cursor on disabled, not-editable, or otherwise
+ * inoperable elements in all browsers (opinionated).
+ */
+[aria-disabled=true],
+[disabled] {
+  cursor: not-allowed;
+}
+
+/*
+ * Change the display on visually hidden accessible elements
+ * in all browsers (opinionated).
+ */
+[aria-hidden=false][hidden] {
+  display: initial;
+}
+
+[aria-hidden=false][hidden]:not(:focus) {
+  clip: rect(0, 0, 0, 0);
+  position: absolute;
+}
+
+/**
+ * 1. Change the inconsistent appearance in all browsers (opinionated).
+ * 2. Add typography inheritance in all browsers (opinionated).
+
+ NOTE(bryce): Please keep and style manually. Agree.
+ */
+button,
+input,
+select,
+textarea {
+  background-color: transparent;
+  /* 1 */
+  border: 1px solid WindowFrame;
+  /* 1 */
+  color: inherit;
+  /* 1 */
+  font: inherit;
+  /* 2 */
+  letter-spacing: inherit;
+  /* 2 */
+  padding: 0.25em 0.375em;
+  /* 1 */
+}
+
+/**
+ * Change the inconsistent appearance in all browsers (opinionated).
+
+ NOTE(bryce): Please keep and style manually. Agree.
+ */
+select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  background: no-repeat right center/1em;
+  border-radius: 0;
+  padding-right: 1em;
+}
+
+/**
+ * Change the inconsistent appearance in all browsers (opinionated).
+ */
+select:not([multiple]):not([size]) {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='4'%3E%3Cpath d='M4 0h6L7 4'/%3E%3C/svg%3E");
+}
+
+/**
+ * Remove the border and padding in all browsers (opinionated).
+
+ NOTE(bryce): Please keep and style manually. Agree.
+ */
+[type=color],
+[type=range] {
+  border-width: 0;
+  padding: 0;
+}
+
+/**
+ * Change the inconsistent appearance in IE (opinionated).
+ */
+::-ms-expand {
+  display: none;
+}
+
+/**
+ * Correct the inconsistent appearance in IE (opinionated).
+ */
+:-ms-input-placeholder {
+  color: rgba(0, 0, 0, 0.54);
+}
+
+/**
+ * Restrict sizing to the page width in all browsers (opinionated).
+
+ NOTE(bryce): This is really good. It can get super annoying when this fails.
+ */
+iframe,
+img,
+input,
+select,
+textarea {
+  height: auto;
+  max-width: 100%;
+}
+
+/*
+* 1. Remove animations when motion is reduced (opinionated).
+* 2. Remove fixed background attachments when motion is reduced (opinionated).
+* 3. Remove timed scrolling behaviors when motion is reduced (opinionated).
+* 4. Remove transitions when motion is reduced (opinionated).
+
+
+NOTE(bryce): DO NOT REMOVE UNDER ANY CIRCUMSTANCES. ACCESSIBILITY IS HARD BUT THIS IS THE LEAST WE CAN DO. IF AN
+ANIMATION IS ABSOLUTELY REQUIRED, DO NOT REMOVE THIS, FIND A WORKAROUND OR JUST DISPLAY A MESSAGE STATING THAT
+ANIMATIONS ARE REQUIRED AND THAT THEY MUST TURN OFF REDUCE MOTION TO SEE THEM. BUT AGAIN, DO NOT REMOVE THE FOLLOWING.
+Agree 1000%.
+*/
+@media (prefers-reduced-motion: reduce) {
+  *,
+::before,
+::after {
+    animation-delay: -1ms !important;
+    /* 1 */
+    animation-duration: 1ms !important;
+    /* 1 */
+    animation-iteration-count: 1 !important;
+    /* 1 */
+    background-attachment: initial !important;
+    /* 2 */
+    scroll-behavior: auto !important;
+    /* 3 */
+    transition-delay: 0s !important;
+    /* 4 */
+    transition-duration: 0s !important;
+    /* 4 */
+  }
+}
+/*# sourceMappingURL=undo-redo.css.map */
 *, ::before, ::after {
   color: var(--fgc);
   color: var(--fg);
@@ -8,35 +526,44 @@
 }
 
 :root {
-  --dark: #1e1e1e;
-  --mid: #2e2e2e;
-  --blue-one: #2ac9b6;
-  --blue-two: #756ce7;
-  --gradient: linear-gradient(90deg, var(--blue-one), var(--blue-two));
-  --gradient-v: linear-gradient(180deg, var(--blue-one), var(--blue-two));
-  --font: "Fira Sans", sans-serif;
-  --mono-font: "Fira Code", monospace;
+  --dark: rgb(10.77% 10.77% 10.77%);
+  --mid: rgb(18.94% 18.94% 18.94%);
+  --blue-one: rgb(15.36% 86.33% 90.6%);
+  --blue-two: rgb(52.41% 48.93% 99.87%);
+  --blue-two-d: rgb(0.75% 61.02% 64.26%);
+  --green: rgb(48.96% 57.89% 24.62%);
+  --green-d: rgb(27.03% 36.1% 1.03%);
+  --gradient: linear-gradient(90deg, var(--blue-one), var(--blue-two), var(--green-d));
+  --gradient-v: linear-gradient(180deg, var(--blue-one), var(--blue-two), var(--green-d));
+  --font: "FiraGO", sans-serif;
+  --mono-font: "Fira Code VF", monospace;
   --bg: var(--dark);
   --fg: white;
   --accent: var(--blue-two) ;
 }
 
-@supports (font-variation-settings: normal) {
-  :root {
-    --mono-font: "Fira Code VF", monospace;
-  }
-}
 html, body {
   background: var(--bg);
   width: 100%;
   height: 100%;
   scroll-snap-type: y mandatory;
+  font-feature-settings: "abvs", "blws", "case", "calt", "dlig", "jalt", "kern", "lnum", "locl", "pnum", "rlig", "liga";
 }
 
 body {
   display: flex;
   flex-direction: column;
   font-size: min(var(--font-adjust, 1rem), var(--font-percent-adjust, 3vw));
+}
+
+a {
+  text-decoration: none;
+}
+
+.thin-space {
+  display: inline-block;
+  width: 0.1666666667em;
+  margin: 0;
 }
 
 @keyframes typing {
@@ -401,11 +928,11 @@ body {
 }
 
 @media print {
-  .page-resume {
+  html {
     display: block !important;
     background: white !important;
   }
-  .page-resume > div {
+  html > .page-resume > div {
     width: 100% !important;
     height: 100% !important;
   }
@@ -437,6 +964,7 @@ body {
   font-weight: 300;
   --fg: var(--blue-two);
   text-transform: uppercase;
+  font-feature-settings: "abvs", "blws", "case", "calt", "dlig", "jalt", "kern", "lnum", "locl", "pnum", "rlig", "liga", "cpsp";
   line-height: 1.1;
   margin: 0 0 -0.1em;
   letter-spacing: 0.1em;
@@ -482,6 +1010,7 @@ body {
   margin: 0.5em 0 0;
   line-height: 1;
   text-transform: uppercase;
+  font-feature-settings: "abvs", "blws", "case", "calt", "dlig", "jalt", "kern", "lnum", "locl", "pnum", "rlig", "liga", "cpsp";
   --fg: var(--blue-two);
   letter-spacing: 0.1em;
 }
@@ -489,16 +1018,24 @@ body {
   margin: 0;
   text-align: justify;
 }
-.page-resume > div span, .page-resume > div .split {
-  font-size: 1em;
+.page-resume > div p > span {
+  --fg: var(--green);
   font-weight: 400;
-  --fg: var(--blue-two);
-  margin: 0.4em 0 0.1em;
-  line-height: 1;
 }
 .page-resume > div .education {
   display: grid;
   grid-template-columns: 1fr 1fr;
+}
+.page-resume > div .education > span:nth-of-type(2n + 1), .page-resume > div .education > div:nth-of-type(2n) {
+  --fg: var(--green);
+  font-weight: 400;
+}
+.page-resume > div .split, .page-resume > div .split > span {
+  font-size: 1em;
+  font-weight: 400;
+  --fg: var(--blue-two-d);
+  margin: 0.4em 0 0.1em;
+  line-height: 1;
 }
 .page-resume > div .split {
   display: flex;
