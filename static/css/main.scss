@@ -591,6 +591,18 @@ a {
       a {
         font-style: italic;
       }
+
+      //time:nth-of-type(2) {
+      //  position: relative;
+      //  > span {
+      //    position: absolute;
+      //    left: 0;
+      //  }
+      //  &::before {
+      //    content: 'September';
+      //    color: transparent;
+      //  }
+      //}
     }
 
     ul {
